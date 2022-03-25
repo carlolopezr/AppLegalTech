@@ -3,3 +3,9 @@
     margin: 0;
     padding: 0;
 }
+
+.degradado{
+    background: linear-gradient(90deg, rgb(243, 243, 243) 0%, rgb(216, 216, 216) 23%, rgb(187, 187, 187) 100%);
+}
+
+

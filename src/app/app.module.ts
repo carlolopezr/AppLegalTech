@@ -5,16 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemandaModule } from './demanda/demanda.module';
 import { SharedModule } from './shared/shared.module';
+import { AutenticationModule } from './autentication/autentication.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DemandaModule,
     SharedModule,
+    AutenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
