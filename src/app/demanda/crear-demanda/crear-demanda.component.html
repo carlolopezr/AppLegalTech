@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Centro Médico</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script src="codigo.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1 style="text-align: center;">Crear Nueva Demanda</h1>
+  <div class="container">
+    <div class="container mt-1">
+      <br>
+      <h1>Datos de la Demanda</h1>
+      <div class="row">
+        <div class="col-sm-6 bg-light text-white">
+          <div class="input-group">
+            <span class="input-group-text">Id Demanda:</span>
+            <input type="text" class="form-control" placeholder="">
+          </div>
+          <br>
+          <div class="input-group">
+            <input type="datetime-local" id="meeting-time" name="meeting-time" value="2018-06-12T19:30"
+              min="2021-01-31T00:00" max="2022-12-31T00:00">
+          </div>
+          <br>
+          <div class="form-floating">
+            <select class="form-select" id="sel1" name="sellist">
+              <option></option>
+              <option>Judicial</option>
+              <option>Judicial</option>
+              <option>Judicial</option>
+            </select>
+            <label for="sel1" class="form-label" style="color: black;">Tipo Demanda:</label>
+          </div>
+        </div>
+        <div class="col-sm-6 bg-light text-white">
+          <label for="comment" style="color: black;">Detalle de la Demanda:</label>
+          <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container mt-1">
+      <h1>Demandado</h1>
+      <div class="row bg-light">
+        <div class="col-2">
+          <div class="form-group">
+            <label for="txtRut">Rut:</label>
+            <input type="text" required class="form-control" name="rut" id="txtRut" aria-describedby="helpId"
+              placeholder="">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label for="txtRut" style="color: black;">Nombre:</label>
+            <input type="text" required class="form-control" name="Id" id="txtId" aria-describedby="helpId">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label for="txtRut" style="color: black;">Apellido</label>
+            <input type="text" required class="form-control" name="Id" id="txtId" aria-describedby="helpId">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label for="txtTelefono" style="color: black;">Telefono:</label>
+            <input type="number" required class="form-control" name="Id" id="txtTelefono" aria-describedby="helpId">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-floating">
+            <select class="form-select" id="sel1" name="sellist">
+              <option></option>
+              <option>Concepcion</option>
+              <option>Hualpen</option>
+              <option>Talcahuano</option>
+            </select>
+            <label for="sel1" class="form-label" style="color: black;">Comuna:</label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <h1>Demandante</h1>
+      <div class="row bg-light">
+        <div class="col-2">
+          <div class="form-group">
+            <label for="txtRut">Rut:</label>
+            <input type="text" required class="form-control" name="rut" id="txtRut" aria-describedby="helpId"
+              placeholder="">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label for="txtRut" style="color: black;">Nombre:</label>
+            <input type="text" required class="form-control" name="Id" id="txtId" aria-describedby="helpId">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label for="txtRut" style="color: black;">Apellido</label>
+            <input type="text" required class="form-control" name="Id" id="txtId" aria-describedby="helpId">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label for="txtRut" style="color: black;">Telefono:</label>
+            <input type="text" required class="form-control" name="Id" id="txtId" aria-describedby="helpId">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-floating">
+            <select class="form-select" id="sel1" name="sellist">
+              <option></option>
+              <option>Concepcion</option>
+              <option>Hualpen</option>
+              <option>Talcahuano</option>
+            </select>
+            <label for="sel1" class="form-label" style="color: black;">Comuna:</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Crear Demanda</button>
+  </div>
+
+</body>
+
+</html>
