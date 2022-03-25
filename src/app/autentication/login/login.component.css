@@ -1,0 +1,19 @@
+
+.login-container{
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    background-color: blue;
+    border-radius: 5%;
+    
+}
+
+.btn-login{
+    background-color: orangered;
+    padding: 4px 30px;
+}
+
+
+.login__input{
+    padding: 5px;
+}

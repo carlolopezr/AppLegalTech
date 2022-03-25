@@ -4,11 +4,15 @@
     padding: 0;
 }
 
-.enlinea{
-    display: flex;
-    padding: 20px;
-}
-
 a{
     color: #212529;
 }
+
+.logo{
+    height: 80px;
+}
+
+.topnav-bg{
+    background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(187, 227, 253) 23%, rgb(168, 223, 255)100%);
+}
+

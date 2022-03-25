@@ -5,5 +5,7 @@
 }
 
 .degradado{
-    background: linear-gradient(90deg, rgba(135,135,135,1) 0%, rgba(190,190,190,1) 23%, rgba(224,224,224,1) 100%);
+    background: linear-gradient(90deg, rgb(243, 243, 243) 0%, rgb(216, 216, 216) 23%, rgb(187, 187, 187) 100%);
 }
+
+
