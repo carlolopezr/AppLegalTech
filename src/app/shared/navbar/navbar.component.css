@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.gris{
+    color: #212529;  
+}
+
+.item-padding{
+    padding: 15px 30px;
+}
+
+nav ul li:hover{
+    background-color: rgb(172, 172, 172);
+}
