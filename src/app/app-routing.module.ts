@@ -13,7 +13,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path:'casos',
+    path:'caso',
     component:ListaCasosComponent
   },
   {
