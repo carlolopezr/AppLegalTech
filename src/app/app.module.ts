@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { DemandaModule } from './demanda/demanda.module';
 import { SharedModule } from './shared/shared.module';
 import { AutenticationModule } from './autentication/autentication.module';
+import { CasoModule } from './caso/caso.module';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { AutenticationModule } from './autentication/autentication.module';
     AppRoutingModule,
     DemandaModule,
     SharedModule,
-    AutenticationModule
+    AutenticationModule,
+    CasoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
