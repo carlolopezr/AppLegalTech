@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './autentication/login/login.component';
 import { ListaCasosComponent } from './caso/lista-casos/lista-casos.component';
 import { CrearCasoComponent } from './caso/crear-caso/crear-caso.component';
+import { ListaDemandasComponent } from './demanda/lista-demandas/lista-demandas.component';
+import { CrearDemandaComponent } from './demanda/crear-demanda/crear-demanda.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,14 @@ const routes: Routes = [
   {
     path:'crearcaso',
     component:CrearCasoComponent
+  },
+  {
+    path: 'demanda',
+    component:ListaDemandasComponent
+  },
+  {
+    path: 'creardemanda',
+    component:CrearDemandaComponent
   },
   {
     path:'**',

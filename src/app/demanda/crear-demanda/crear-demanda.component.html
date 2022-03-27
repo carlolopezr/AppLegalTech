@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<app-topnav></app-topnav>
 
-<head>
-  <title>Centro Médico</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<app-navbar></app-navbar>
 
-  <!-- Popper JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div class="container-sm mb-5 mt-5">
+  <div class="card">
+    <div class="card-4">
 
-  <script src="codigo.js"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-  <h1 style="text-align: center;">Crear Nueva Demanda</h1>
-  <div class="container">
     <div class="container mt-1">
       <br>
       <h1>Datos de la Demanda</h1>
@@ -37,14 +23,15 @@
               min="2021-01-31T00:00" max="2022-12-31T00:00">
           </div>
           <br>
-          <div class="form-floating">
+          <div class="form-group">
+            <label for="sel1" class="form-label" style="color: black;">Tipo Demanda:</label>
             <select class="form-select" id="sel1" name="sellist">
               <option></option>
               <option>Judicial</option>
               <option>Judicial</option>
               <option>Judicial</option>
             </select>
-            <label for="sel1" class="form-label" style="color: black;">Tipo Demanda:</label>
+            
           </div>
         </div>
         <div class="col-sm-6 bg-light text-white">
@@ -83,14 +70,15 @@
           </div>
         </div>
         <div class="col-2">
-          <div class="form-floating">
+          <div class="form-group">
+            <label for="sel1" class="form-label" style="color: black;">Comuna:</label>
             <select class="form-select" id="sel1" name="sellist">
               <option></option>
               <option>Concepcion</option>
               <option>Hualpen</option>
               <option>Talcahuano</option>
             </select>
-            <label for="sel1" class="form-label" style="color: black;">Comuna:</label>
+            
           </div>
         </div>
       </div>
@@ -123,22 +111,24 @@
           </div>
         </div>
         <div class="col-2">
-          <div class="form-floating">
+          <div class="form-group">
+            <label for="sel1" class="form-label" style="color: black;">Comuna:</label>
             <select class="form-select" id="sel1" name="sellist">
               <option></option>
               <option>Concepcion</option>
               <option>Hualpen</option>
               <option>Talcahuano</option>
             </select>
-            <label for="sel1" class="form-label" style="color: black;">Comuna:</label>
           </div>
         </div>
       </div>
     </div>
     <br>
-    <button type="submit" class="btn btn-primary">Crear Demanda</button>
+    <button type="submit" class="btn btn-primary mb-5 float-right mr-5">Crear Demanda</button>
+    <button type="submit" class="btn btn-danger mb-5 float-left ml-5">Volver atras</button>
+  
+
   </div>
-
-</body>
-
-</html>
+</div>
+</div>
+<app-footer></app-footer>
