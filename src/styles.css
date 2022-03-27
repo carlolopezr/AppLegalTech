@@ -4,6 +4,8 @@
     padding: 0;
 }
 
+/* body { padding-bottom: 200px; } */
+
 .degradado{
     background: linear-gradient(90deg, rgb(243, 243, 243) 0%, rgb(216, 216, 216) 23%, rgb(187, 187, 187) 100%);
 }
