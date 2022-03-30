@@ -1,0 +1,8 @@
+.demanda-container{
+    background-color: white;
+}
+
+.flexibles{
+    display: flex;
+    justify-content: space-between;
+}
