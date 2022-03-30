@@ -1,0 +1,26 @@
+
+
+.flexible{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-add{
+    padding: 5px 30px;
+} 
+
+.buscar{
+    display: inline-block;
+}
+
+.red{
+    color: red;
+}
+
+.yellow{
+    color: yellow;
+}
+
+.enlinea{
+    display: flex;
+}

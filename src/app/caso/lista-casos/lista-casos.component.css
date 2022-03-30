@@ -20,3 +20,7 @@
 .yellow{
     color: yellow;
 }
+
+.enlinea{
+    display: flex;
+}

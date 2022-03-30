@@ -8,57 +8,87 @@ import { caso } from '../../interfaces';
 })
 export class ListaCasosComponent implements OnInit {
 
+
+  caso:caso = {
+    id:'',
+    fecha:'',
+    abogado:'',
+    seguimiento:'',
+    estado:''
+  }
+
   casos:caso[] = [
     {
-      id:'123123',
+      id:'1',
       fecha:'123123',
       abogado:'asadasd',
       seguimiento:'asdasd',
-      estado:'asdasd'
+      estado:'Inactivo'
     },
     {
-      id:'123123',
+      id:'2',
       fecha:'123123',
       abogado:'asi123123asd',
       seguimiento:'asdasgxgsdasd',
-      estado:'asd124124asd'
+      estado:'Inactivo'
     },
     {
-      id:'123123',
+      id:'3',
       fecha:'123123',
       abogado:'aaaaaaaaa',
       seguimiento:'asaaaaaa',
-      estado:'asaaaaaa'
+      estado:'Activo'
     },
     {
-      id:'123123',
+      id:'4',
       fecha:'123123',
       abogado:'asahjgjghjghjdasd',
       seguimiento:'asghjghjghjghjdasd',
-      estado:'asdaghjghjsd'
+      estado:'Activo'
     },
     {
-      id:'123123',
+      id:'5',
       fecha:'123123',
       abogado:'asadasd',
       seguimiento:'asdasd',
-      estado:'asdasd'
+      estado:'Activo'
     },
 
   ];
 
   constructor() { }
 
-  // vista: boolean = false;
-
-//   showDialog(CasoModule) {
-//     this.vista = true;
-// }   
-
-
   ngOnInit(): void {
   }
 
+
+  obtenerCaso( id:string ):caso {
+     this.casos.forEach(caso => {
+        if (caso.id===id) {
+          this.caso = caso;
+          // console.log(this.caso);
+          return this.caso       
+        }
+        return this.caso
+    });
+    return this.caso;
+    
+  }
+
+  cambiarEstado( id : string ){
+    this.obtenerCaso(id);
+    if (this.caso.estado=='Activo') {
+      this.caso.estado = 'Inactivo'
+    }
+    else{
+      this.caso.estado = 'Activo'
+    }
+    
+  }
+
+
+  
+  
   
 
 }

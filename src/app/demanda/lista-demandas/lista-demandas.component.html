@@ -1,1 +1,111 @@
-<p>lista-demandas works!</p>
+<app-topnav></app-topnav>
+
+
+<app-navbar></app-navbar>
+
+<div class="container">
+
+  <div class="row">
+    <div class="mt-5 flexible">
+
+      <div class="buscar">
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Buscar por id...">
+          <button class="btn btn-primary" type="button">
+            <i class="fa fa-magnifying-glass"></i> Buscar
+          </button>
+        </form>
+      </div>
+
+      <div class="btn-agregar">
+        <button routerLink="/creardemanda" class="btn-add btn btn-success">
+           Nueva Demanda <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTA CASOS -->
+  <div class="mt-3">
+    <h2>Lista de casos</h2>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Id demanda</th>
+          <th>Fecha creación</th>
+          <th>Tipo Demanda</th>
+          <th>Nombre Demandante</th>
+          <th>Nombre Demandado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of casos; index as i">
+
+          <td>{{item.id}}</td>
+          <td>{{item.fecha}}</td>
+          <td>{{item.abogado}}</td>
+          <td><b>{{item.seguimiento}}</b> </td>
+          <td>{{item.estado}}</td>
+          <td>
+            <div class="enlinea">
+              <a href="" data-bs-toggle="modal" [attr.data-bs-target]="'#'+item.abogado+item.id"><i
+                  class="m-1 pr-2 fa-solid fa-eye"> </i></a>
+              <!-- <a href=""><i class="m-1 pr-2 fa-solid fa-pencil yellow"></i></a> -->
+              <a href=""><i class="fa-solid fa-folder-open"></i></a>
+            </div>
+          </td>
+          
+
+          <div class="modal" [id]="item.abogado+item.id">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Información del caso</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label>Código</label>
+                      <input type="text" class="form-control" placeholder="{{item.id}}" disabled>
+                    </div>
+                    <div class="form-group">
+                      <label>Fecha creación</label>
+                      <input type="text" class="form-control" placeholder="{{item.fecha}}" disabled>
+                    </div>
+                    <div class="form-group">
+                      <label>Abogado asignado</label>
+                      <input type="text" class="form-control" placeholder="{{item.abogado}}" id="abogado" disabled>
+                    </div>
+                    <div class="form-group">
+                      <label>Seguimiento</label>
+                      <input type="text" class="form-control" placeholder="{{item.seguimiento}}" id="seguimiento"
+                        disabled>
+                    </div>
+                    <div class="form-group">
+                      <label>Estado</label>
+                      <input type="text" class="form-control" placeholder="{{item.estado}}" id="estado" disabled>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-footer style="position: fixed; bottom: 0; width: 100%"></app-footer>
