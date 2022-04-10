@@ -7,6 +7,7 @@ import { DemandaModule } from './demanda/demanda.module';
 import { SharedModule } from './shared/shared.module';
 import { AutenticationModule } from './autentication/autentication.module';
 import { CasoModule } from './caso/caso.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { CasoModule } from './caso/caso.module';
     SharedModule,
     AutenticationModule,
     CasoModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

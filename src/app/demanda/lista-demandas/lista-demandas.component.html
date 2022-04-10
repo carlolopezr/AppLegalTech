@@ -27,29 +27,29 @@
 
   <!-- LISTA CASOS -->
   <div class="mt-3">
-    <h2>Lista de casos</h2>
+    <h2>Lista de demandas</h2>
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
           <th>Id demanda</th>
           <th>Fecha creación</th>
-          <th>Tipo Demanda</th>
-          <th>Nombre Demandante</th>
           <th>Nombre Demandado</th>
+          <th>Nombre Demandante</th>
+          <th>Tipo Demanda</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of casos; index as i">
+        <tr *ngFor="let item of demandas; index as i">
 
-          <td>{{item.id}}</td>
-          <td>{{item.fecha}}</td>
-          <td>{{item.abogado}}</td>
-          <td><b>{{item.seguimiento}}</b> </td>
-          <td>{{item.estado}}</td>
+          <td>{{item.id_demanda}}</td>
+          <td>{{item.fecha_demanda}}</td>
+          <td>{{item.nom_demandado + ' '+ item.ape_demandado}}</td>
+          <td>{{item.nom_dmte + ' '+ item.ape_dmte}}</td>
+          <td>{{item.tipo_demanda_id_tp_demanda}}</td>
           <td>
             <div class="enlinea">
-              <a href="" data-bs-toggle="modal" [attr.data-bs-target]="'#'+item.abogado+item.id"><i
+              <a href="" data-bs-toggle="modal" [attr.data-bs-target]="'#mymodal'+i"><i
                   class="m-1 pr-2 fa-solid fa-eye"> </i></a>
               <!-- <a href=""><i class="m-1 pr-2 fa-solid fa-pencil yellow"></i></a> -->
               <a href=""><i class="fa-solid fa-folder-open"></i></a>
@@ -57,7 +57,7 @@
           </td>
           
 
-          <div class="modal" [id]="item.abogado+item.id">
+          <div class="modal" [id]="'mymodal'+i">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
 
@@ -72,24 +72,24 @@
                   <form>
                     <div class="form-group">
                       <label>Código</label>
-                      <input type="text" class="form-control" placeholder="{{item.id}}" disabled>
+                      <input type="text" class="form-control" placeholder="{{item.id_demanda}}" disabled>
                     </div>
                     <div class="form-group">
                       <label>Fecha creación</label>
-                      <input type="text" class="form-control" placeholder="{{item.fecha}}" disabled>
+                      <input type="text" class="form-control" placeholder="{{item.fecha_demanda}}" disabled>
                     </div>
                     <div class="form-group">
-                      <label>Abogado asignado</label>
-                      <input type="text" class="form-control" placeholder="{{item.abogado}}" id="abogado" disabled>
+                      <label>Demandado</label>
+                      <input type="text" class="form-control" placeholder="{{item.nom_demandado + item.ape_demandado}}" id="abogado" disabled>
                     </div>
                     <div class="form-group">
-                      <label>Seguimiento</label>
-                      <input type="text" class="form-control" placeholder="{{item.seguimiento}}" id="seguimiento"
+                      <label>Demandante</label>
+                      <input type="text" class="form-control" placeholder="{{item.nom_dmte + item.ape_dmte}}" id="seguimiento"
                         disabled>
                     </div>
                     <div class="form-group">
-                      <label>Estado</label>
-                      <input type="text" class="form-control" placeholder="{{item.estado}}" id="estado" disabled>
+                      <label>Tipo demanda</label>
+                      <input type="text" class="form-control" placeholder="{{item.tipo_demanda_id_tp_demanda}}" id="estado" disabled>
                     </div>
                   </form>
                 </div>

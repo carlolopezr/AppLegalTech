@@ -1,0 +1,289 @@
+<app-topnav></app-topnav>
+<app-navbar></app-navbar>
+
+
+
+<div class="container degradado mb-5 mt-5 p-4">
+    <button class="btn btn-success float-right"> Guardar modificaciones <i class="fa-solid fa-plus"></i></button>
+    <h1>Datos del caso</h1>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="comment">Id del caso:</label>
+                <input [(ngModel)]="caso.id_caso" type="text" class="form-control" id="idcaso" placeholder="Ingrese id"
+                    name="idcaso" disabled>
+            </div>
+            <br>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="comment">Asignar abogado:</label>
+                <select class="form-select" name="" id="">
+                    <option selected value="">{{caso.nombre_usuario}}</option>
+                    <option value="">El peor</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="comment">Estado:</label>
+                <select class="form-select" name="" id="">
+                    <option selected value="">{{caso.estado}}</option>
+                    <option value="">El peor</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="comment">Seguimiento:</label>
+                <select class="form-select" name="" id="">
+                    <option selected value="">{{caso.seguimiento}}</option>
+                    <option value="">El peor</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <label for="comment" style="color: black;">Detalle del caso:</label>
+            <textarea class="form-control" rows="5" id="comment" name="text" [value]="caso.detalle_caso"></textarea>
+        </div>
+    </div>
+
+
+    <!-- Lista demandas -->
+
+    <div class="lista-demandas mt-4">
+        <h3>Listado de demandas</h3>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div *ngFor="let demanda of demandas; index as i" class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        Número de demanda: #{{demanda.id_demanda}}
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <div class="row datos-demanda p-2">
+                            <!-- Datos de la demanda -->
+                            <div class="col-sm-4">
+                                <h5>Datos de la demanda</h5>
+                                <ul>
+                                    <li><b>Número de demanda:</b> {{demanda.id_demanda}}</li>
+                                    <li><b>Fecha demanda:</b> {{demanda.fecha_demanda}}</li>
+                                    <li><b>Tipo de demanda:</b> {{demanda.tipo_demanda_id_tp_demanda}}</li>
+                                    <li><b>Detalle demanda:</b> {{demanda.detalle_demanda}}</li>
+                                </ul>
+                            </div>
+
+                            <!-- Datos demandado -->
+                            <div class="col-sm-4">
+                                <h5>Datos del demandado</h5>
+                                <ul>
+                                    <li><b>Rut demandado:</b> {{demanda.rut_demandado}}</li>
+                                    <li><b>Nombre demandado:</b> {{demanda.nom_demandado + ' ' + demanda.ape_demandado}}
+                                    </li>
+                                    <li><b>teléfono demandado:</b> {{demanda.tel_demandado}}</li>
+                                    <li><b>Comuna demandado:</b> {{demanda.id_comuna_dmdo}}</li>
+                                </ul>
+                            </div>
+
+                            <!-- Datos demandante -->
+                            <div class="col-sm-4">
+                                <h5>Datos del demandante</h5>
+                                <ul>
+                                    <li><b>Rut demandante:</b> {{demanda.rut_dmte}}</li>
+                                    <li><b>Nombre demandante:</b> {{demanda.nom_dmte + ' ' + demanda.ape_dmte}}</li>
+                                    <li><b>teléfono demandante:</b> {{demanda.tel_dmte}}</li>
+                                    <li><b>Comuna demandante:</b> {{demanda.id_comuna_dmte}}</li>
+                                </ul>
+                            </div>
+
+
+                            <div class="btn-modificar">
+                                <button data-bs-toggle="modal" [attr.data-bs-target]="'#mymodal'+i"
+                                    class="btn btn-primary"> Modificar demanda</button>
+                            </div>
+
+                            <!-- MODAL -->
+                            <div class="modal fade" [id]="'mymodal'+i">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Modificar demanda</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="row m-1 demanda-container ">
+                                                <h3>Datos de la demanda</h3>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="comment">Id demanda:</label>
+                                                        <input type="text" class="form-control"
+                                                            [value]="demanda.id_demanda" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group date">
+                                                        <label for="comment">Fecha de ingreso:</label>
+                                                        <input class="form-control" type="datetime-local"
+                                                            id="meeting-time" name="meeting-time" min="2021-01-31T00:00"
+                                                            max="2022-12-31T00:00">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="sel1" class="form-label">Tipo Demanda:</label>
+                                                        <select class="form-select" id="sel1" name="sellist">
+                                                            <option selected> {{demanda.tipo_demanda_id_tp_demanda}}
+                                                            </option>
+                                                            <option>Judicial</option>
+                                                            <option>Judicial</option>
+                                                            <option>Judicial</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <label for="comment">Detalle de la Demanda:</label>
+                                                    <textarea class="form-control mb-4" rows="5" id="comment"
+                                                        name="text" [value]="demanda.detalle_demanda"></textarea>
+                                                </div>
+
+                                                <!-- DATOS DEMANDADO -->
+                                                <h3>Demandado</h3>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="txtRut">Rut:</label>
+                                                            <input type="text" required class="form-control" name="rut"
+                                                                id="txtRut" aria-describedby="helpId" placeholder=""
+                                                                [value]="demanda.rut_demandado">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="txtRut">Nombre:</label>
+                                                            <input type="text" required class="form-control" name="Id"
+                                                                id="txtId" aria-describedby="helpId"
+                                                                [value]="demanda.nom_demandado">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="txtRut">Apellido:</label>
+                                                            <input type="text" required class="form-control" name="Id"
+                                                                id="txtId" aria-describedby="helpId"
+                                                                [value]="demanda.ape_demandado">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="txtTelefono">Telefono:</label>
+                                                            <input type="text" required class="form-control" name="Id"
+                                                                id="txtTelefono" aria-describedby="helpId"
+                                                                [value]="demanda.tel_demandado">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="sel1" class="form-label">Comuna:</label>
+                                                            <select class="form-select" id="sel1" name="sellist">
+                                                                <option selected>{{demanda.id_comuna_dmdo}}</option>
+                                                                <option>Concepcion</option>
+                                                                <option>Hualpen</option>
+                                                                <option>Talcahuano</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- DATOS DEMANDANTE -->
+                                                <h3>Demandante</h3>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="txtRut">Rut:</label>
+                                                            <input type="text" required class="form-control" name="rut"
+                                                                id="txtRut" aria-describedby="helpId" placeholder=""
+                                                                [value]="demanda.rut_dmte">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="txtRut">Nombre:</label>
+                                                            <input type="text" required class="form-control" name="Id"
+                                                                id="txtId" aria-describedby="helpId"
+                                                                [value]="demanda.nom_dmte">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="txtRut">Apellido:</label>
+                                                            <input type="text" required class="form-control" name="Id"
+                                                                id="txtId" aria-describedby="helpId"
+                                                                [value]="demanda.ape_dmte">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="txtTelefono">Telefono:</label>
+                                                            <input type="text" required class="form-control" name="Id"
+                                                                id="txtTelefono" aria-describedby="helpId"
+                                                                [value]="demanda.tel_dmte">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="sel1" class="form-label">Comuna:</label>
+                                                            <select class="form-select" id="sel1" name="sellist">
+                                                                <option selected>{{demanda.id_comuna_dmte}}</option>
+                                                                <option>Concepcion</option>
+                                                                <option>Hualpen</option>
+                                                                <option>Talcahuano</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <!-- BOTONES DEMANDA -->
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="flexibles modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Volver
+                                                atras</button>
+                                            <button type="button" class="btn btn-success"
+                                                data-bs-dismiss="modal">Modificar demanda</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<app-footer></app-footer>

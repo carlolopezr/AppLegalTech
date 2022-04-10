@@ -1,0 +1,14 @@
+.flexibles{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+ul li{
+    list-style: square;
+}
+
+.btn-modificar{
+    display: flex;
+    justify-content: flex-end;
+}

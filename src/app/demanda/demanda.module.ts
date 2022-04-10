@@ -15,7 +15,7 @@ import { ListaDemandasComponent } from './lista-demandas/lista-demandas.componen
   ],
   exports:[
     CrearDemandaComponent,
-    ListaDemandasComponent,
+    ListaDemandasComponent
   ],
   imports: [
     CommonModule,
