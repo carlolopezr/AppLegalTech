@@ -24,3 +24,10 @@
 .enlinea{
     display: flex;
 }
+
+
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+

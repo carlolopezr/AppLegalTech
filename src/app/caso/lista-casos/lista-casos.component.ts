@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { caso } from '../../interfaces';
+import { BasedatosService } from '../../services/basedatos.service';
 
 @Component({
   selector: 'app-lista-casos',
@@ -8,87 +9,52 @@ import { caso } from '../../interfaces';
 })
 export class ListaCasosComponent implements OnInit {
 
-
   caso:caso = {
-    id:'',
-    fecha:'',
-    abogado:'',
+    id_caso: '',
+    fecha_caso:'',
+    nombre_usuario:'',
     seguimiento:'',
+    detalle_caso:'',
     estado:''
   }
 
-  casos:caso[] = [
-    {
-      id:'1',
-      fecha:'123123',
-      abogado:'asadasd',
-      seguimiento:'asdasd',
-      estado:'Inactivo'
-    },
-    {
-      id:'2',
-      fecha:'123123',
-      abogado:'asi123123asd',
-      seguimiento:'asdasgxgsdasd',
-      estado:'Inactivo'
-    },
-    {
-      id:'3',
-      fecha:'123123',
-      abogado:'aaaaaaaaa',
-      seguimiento:'asaaaaaa',
-      estado:'Activo'
-    },
-    {
-      id:'4',
-      fecha:'123123',
-      abogado:'asahjgjghjghjdasd',
-      seguimiento:'asghjghjghjghjdasd',
-      estado:'Activo'
-    },
-    {
-      id:'5',
-      fecha:'123123',
-      abogado:'asadasd',
-      seguimiento:'asdasd',
-      estado:'Activo'
-    },
+  casosCopia:caso[]=[];
 
-  ];
+  casos:caso[]=[];
 
-  constructor() { }
+
+  constructor(private bd: BasedatosService) { }
 
   ngOnInit(): void {
+    this.obtenerCasos();   
   }
 
-
-  obtenerCaso( id:string ):caso {
-     this.casos.forEach(caso => {
-        if (caso.id===id) {
-          this.caso = caso;
-          // console.log(this.caso);
-          return this.caso       
-        }
-        return this.caso
-    });
-    return this.caso;
+  ngOnDestroy() {
     
   }
+
+
+  obtenerCasos(){
+    this.bd.getCasos().subscribe(casos =>{
+      this.casos = casos; 
+      // this.casosCopia = [...this.casos] 
+      // console.log(this.casosCopia);
+    });
+  }
+
+
 
   cambiarEstado( id : string ){
-    this.obtenerCaso(id);
-    if (this.caso.estado=='Activo') {
-      this.caso.estado = 'Inactivo'
-    }
-    else{
-      this.caso.estado = 'Activo'
-    }
-    
-  }
-
-
-  
-  
-  
-
+    this.casos.forEach(caso => {
+        if (caso.id_caso==id) {
+            if (caso.estado == '1') {
+              caso.estado = '0';
+            }
+            else{
+              caso.estado = '1'
+            }
+        }
+    });
+    console.log(this.casos);
+  } 
 }

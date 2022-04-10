@@ -5,6 +5,7 @@ import { ListaCasosComponent } from './caso/lista-casos/lista-casos.component';
 import { CrearCasoComponent } from './caso/crear-caso/crear-caso.component';
 import { ListaDemandasComponent } from './demanda/lista-demandas/lista-demandas.component';
 import { CrearDemandaComponent } from './demanda/crear-demanda/crear-demanda.component';
+import { ModificarCasoComponent } from './caso/modificar-caso/modificar-caso.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'creardemanda',
     component:CrearDemandaComponent
+  },
+  {
+    path: 'modificar-caso/:id',
+    component: ModificarCasoComponent
   },
   {
     path:'**',
