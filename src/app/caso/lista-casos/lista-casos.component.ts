@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { caso } from '../../interfaces';
+import { caso, estado } from '../../interfaces';
 import { BasedatosService } from '../../services/basedatos.service';
 
 @Component({
@@ -9,6 +9,18 @@ import { BasedatosService } from '../../services/basedatos.service';
 })
 export class ListaCasosComponent implements OnInit {
 
+  estados:estado[]=[
+    {
+      id_estado:0,
+      desc_estado:'Inactivo'
+    },
+    {
+      id_estado:1,
+      desc_estado:'Activo'
+    }
+
+  ];
+
   caso:caso = {
     id_caso: '',
     fecha_caso:'',
@@ -17,8 +29,6 @@ export class ListaCasosComponent implements OnInit {
     detalle_caso:'',
     estado:''
   }
-
-  casosCopia:caso[]=[];
 
   casos:caso[]=[];
 

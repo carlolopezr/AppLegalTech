@@ -46,7 +46,7 @@
           <td>{{item.fecha_demanda}}</td>
           <td>{{item.nom_demandado + ' '+ item.ape_demandado}}</td>
           <td>{{item.nom_dmte + ' '+ item.ape_dmte}}</td>
-          <td>{{item.tipo_demanda_id_tp_demanda}}</td>
+          <td>{{item.desc_tp_demanda}}</td>
           <td>
             <div class="enlinea">
               <a href="" data-bs-toggle="modal" [attr.data-bs-target]="'#mymodal'+i"><i
@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group">
                       <label>Tipo demanda</label>
-                      <input type="text" class="form-control" placeholder="{{item.tipo_demanda_id_tp_demanda}}" id="estado" disabled>
+                      <input type="text" class="form-control" placeholder="{{item.desc_tp_demanda}}" id="estado" disabled>
                     </div>
                   </form>
                 </div>
