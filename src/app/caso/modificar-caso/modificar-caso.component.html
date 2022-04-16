@@ -7,7 +7,7 @@
     <button class="btn btn-success float-right"> Guardar modificaciones <i class="fa-solid fa-plus"></i></button>
     <h1>Datos del caso</h1>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="form-group">
                 <label for="comment">Id del caso:</label>
                 <input [(ngModel)]="caso.id_caso" type="text" class="form-control" id="idcaso" placeholder="Ingrese id"
@@ -15,7 +15,15 @@
             </div>
             <br>
         </div>
-        <div class="col-sm-6">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label for="comment">Fecha creación:</label>
+                <input type="text" class="form-control" [value]="caso.fecha_caso" disabled>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
             <div class="form-group">
                 <label for="comment">Asignar abogado:</label>
                 <select class="form-select" name="" id="">
@@ -25,22 +33,27 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="form-group">
                 <label for="comment">Estado:</label>
                 <select class="form-select" name="" id="">
-                    <option selected value="">{{caso.estado}}</option>
-                    <option value="">El peor</option>
+                    <option 
+                    [selected]="caso.estado == item.id_estado.toString()"
+                    *ngFor="let item of estados"  
+                    >{{item.desc_estado}}</option>
+                    
                 </select>
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="form-group">
                 <label for="comment">Seguimiento:</label>
                 <select class="form-select" name="" id="">
-                    <option selected value="">{{caso.seguimiento}}</option>
-                    <option value="">El peor</option>
+                    <option 
+                    [selected]="item == caso.seguimiento"
+                    *ngFor="let item of seguimientos" >{{item}}</option>
+                    
                 </select>
             </div>
         </div>
@@ -75,7 +88,7 @@
                                 <ul>
                                     <li><b>Número de demanda:</b> {{demanda.id_demanda}}</li>
                                     <li><b>Fecha demanda:</b> {{demanda.fecha_demanda}}</li>
-                                    <li><b>Tipo de demanda:</b> {{demanda.tipo_demanda_id_tp_demanda}}</li>
+                                    <li><b>Tipo de demanda:</b> {{demanda.desc_tp_demanda}}</li>
                                     <li><b>Detalle demanda:</b> {{demanda.detalle_demanda}}</li>
                                 </ul>
                             </div>
@@ -88,7 +101,7 @@
                                     <li><b>Nombre demandado:</b> {{demanda.nom_demandado + ' ' + demanda.ape_demandado}}
                                     </li>
                                     <li><b>teléfono demandado:</b> {{demanda.tel_demandado}}</li>
-                                    <li><b>Comuna demandado:</b> {{demanda.id_comuna_dmdo}}</li>
+                                    <li><b>Comuna demandado:</b> {{demanda.nom_comuna_dmdo}}</li>
                                 </ul>
                             </div>
 
@@ -99,7 +112,7 @@
                                     <li><b>Rut demandante:</b> {{demanda.rut_dmte}}</li>
                                     <li><b>Nombre demandante:</b> {{demanda.nom_dmte + ' ' + demanda.ape_dmte}}</li>
                                     <li><b>teléfono demandante:</b> {{demanda.tel_dmte}}</li>
-                                    <li><b>Comuna demandante:</b> {{demanda.id_comuna_dmte}}</li>
+                                    <li><b>Comuna demandante:</b> {{demanda.nom_comuna_dmte}}</li>
                                 </ul>
                             </div>
 
@@ -136,7 +149,7 @@
                                                         <label for="comment">Fecha de ingreso:</label>
                                                         <input class="form-control" type="datetime-local"
                                                             id="meeting-time" name="meeting-time" min="2021-01-31T00:00"
-                                                            max="2022-12-31T00:00">
+                                                            max="2022-12-31T00:00" [value]="demanda.fecha_demanda" disabled>
                                                     </div>
                                                 </div>
 
@@ -144,11 +157,12 @@
                                                     <div class="form-group">
                                                         <label for="sel1" class="form-label">Tipo Demanda:</label>
                                                         <select class="form-select" id="sel1" name="sellist">
-                                                            <option selected> {{demanda.tipo_demanda_id_tp_demanda}}
+                                                            <option
+                                                            [selected]="item.desc_tp_demanda == demanda.desc_tp_demanda"
+                                                            *ngFor="let item of tpDemandas"   >
+                                                            {{item.desc_tp_demanda}}
                                                             </option>
-                                                            <option>Judicial</option>
-                                                            <option>Judicial</option>
-                                                            <option>Judicial</option>
+                                                            
                                                         </select>
 
                                                     </div>
@@ -199,12 +213,11 @@
                                                         <div class="form-group">
                                                             <label for="sel1" class="form-label">Comuna:</label>
                                                             <select class="form-select" id="sel1" name="sellist">
-                                                                <option selected>{{demanda.id_comuna_dmdo}}</option>
-                                                                <option>Concepcion</option>
-                                                                <option>Hualpen</option>
-                                                                <option>Talcahuano</option>
+                                                                <option
+                                                                    [selected]="comuna.nom_comuna == demanda.nom_comuna_dmdo"
+                                                                    *ngFor="let comuna of comunas">
+                                                                    {{comuna.nom_comuna}}</option>
                                                             </select>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -248,10 +261,10 @@
                                                         <div class="form-group">
                                                             <label for="sel1" class="form-label">Comuna:</label>
                                                             <select class="form-select" id="sel1" name="sellist">
-                                                                <option selected>{{demanda.id_comuna_dmte}}</option>
-                                                                <option>Concepcion</option>
-                                                                <option>Hualpen</option>
-                                                                <option>Talcahuano</option>
+                                                                <option
+                                                                    [selected]="comuna.nom_comuna == demanda.nom_comuna_dmte"
+                                                                    *ngFor="let comuna of comunas">
+                                                                    {{comuna.nom_comuna}}</option>
                                                             </select>
 
                                                         </div>
