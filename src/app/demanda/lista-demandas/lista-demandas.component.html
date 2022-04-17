@@ -52,7 +52,7 @@
               <a href="" data-bs-toggle="modal" [attr.data-bs-target]="'#mymodal'+i"><i
                   class="m-1 pr-2 fa-solid fa-eye"> </i></a>
               <!-- <a href=""><i class="m-1 pr-2 fa-solid fa-pencil yellow"></i></a> -->
-              <a href=""><i class="fa-solid fa-folder-open"></i></a>
+              <a [routerLink]="'/modificar-caso/'+item.caso_id_caso"><i class="fa-solid fa-folder-open"></i></a>
             </div>
           </td>
           

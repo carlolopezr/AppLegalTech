@@ -33,6 +33,14 @@
                 </select>
 
               </div>
+              <div class="form-group">
+                <label for="sel1" class="form-label" style="color: black;">Caso asociado:</label>
+                <select [(ngModel)]="demanda.caso_id_caso" class="form-select" id="sel1" name="caso_id_caso">
+                  <option selected> Seleccione el caso</option>
+                  <option *ngFor="let item of casos">Caso número #{{item.id_caso}} </option>
+                </select>
+
+              </div>
             </div>
             <div class="col-sm-6 bg-light text-white">
               <label for="comment" style="color: black;">Detalle de la Demanda:</label>
