@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { comuna, tpDemanda } from 'src/app/interfaces';
+import { comuna, tpDemanda,caso } from 'src/app/interfaces';
 import { BasedatosService } from '../../services/basedatos.service';
 import { demanda, demandaAgregar } from '../../interfaces';
 
@@ -12,6 +12,7 @@ export class CrearDemandaComponent implements OnInit {
 
   tipoDemandas:tpDemanda[]=[];
   comunas:comuna[]=[];
+  casos:caso[]=[];
 
   demanda:demanda={
     id_demanda:0,
@@ -55,6 +56,7 @@ export class CrearDemandaComponent implements OnInit {
   ngOnInit(): void {
     this.obtComunas();
     this.obtTpDemandas();
+    this.obtCasos();
   }
 
   obtComunas(){
@@ -69,11 +71,18 @@ export class CrearDemandaComponent implements OnInit {
     })
   }
 
+  obtCasos(){
+    this.db.getCasos().subscribe(casos => this.casos = casos)
+  }
+
   crearDemanda(){
 
     let id_tp_demanda:string='';
     let id_comuna_dmdo:string ='';
     let id_comuna_dmte:string ='';
+    let fechaDemanda = new Date(this.demanda.fecha_demanda)
+    let año:number = fechaDemanda.getFullYear();
+    let month:number = fechaDemanda.getMonth()+1;
 
     this.tipoDemandas.forEach(tpDemanda =>{
       if (this.demanda.desc_tp_demanda == tpDemanda.desc_tp_demanda) {
@@ -96,7 +105,7 @@ export class CrearDemandaComponent implements OnInit {
     })
 
     this.demandaAgregar.id_demanda = this.demanda.id_demanda.toString();
-    this.demandaAgregar.fecha_demanda = this.demanda.fecha_demanda;
+    this.demandaAgregar.fecha_demanda = fechaDemanda.getDate().toString() + '/' + month + '/' + año
     this.demandaAgregar.detalle_demanda = this.demanda.detalle_demanda;
     this.demandaAgregar.rut_demandado = this.demanda.rut_demandado;
     this.demandaAgregar.nom_demandado = this.demanda.nom_demandado;
@@ -114,16 +123,53 @@ export class CrearDemandaComponent implements OnInit {
 
     console.log(this.demandaAgregar);
     
-    
-    this.db.postDemanda(this.demandaAgregar).subscribe(datos => {
+    if (this.validarDemanda(this.demandaAgregar)) {
+      this.db.postDemanda(this.demandaAgregar).subscribe(datos => {
+      });  
+    }
 
-    });
-
-    
-
-       
+    else{
+      alert('Por favor complete todos los campos')
+    }
   }
 
+
+  validarDemanda(demanda:demandaAgregar):boolean{
+    let valido:boolean = true;
+
+    if (demanda.id_demanda == '') {
+      valido=false
+    }
+    else if(demanda.fecha_demanda==''){
+      valido=false
+    }
+    else if(demanda.detalle_demanda==''){
+      valido=false
+    }
+    else if(demanda.caso_id_caso==''){
+      valido=false
+    }
+    else if(demanda.tipo_demanda_id_tp_demanda==''){
+      valido=false
+    }
+    else if(demanda.rut_demandado=='' 
+    || demanda.rut_dmte=='' 
+    || demanda.nom_demandado ==''
+    || demanda.nom_dmte == ''
+    || demanda.ape_demandado ==''
+    || demanda.ape_dmte ==''
+    || demanda.tel_demandado == ''
+    || demanda.tel_dmte == ''
+    ){
+      valido=false
+    }
+
+    else if(demanda.id_comuna_dmdo=='' || demanda.id_comuna_dmte == '' ){
+      valido=false
+    }
+
+    return valido  
+  }
 
 
 }

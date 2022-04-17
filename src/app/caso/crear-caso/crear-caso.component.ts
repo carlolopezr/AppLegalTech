@@ -71,8 +71,11 @@ export class CrearCasoComponent implements OnInit {
     let año:number = hoy.getFullYear();
     let month:number = hoy.getMonth()+1;
 
+    let estadoInput:string = (<HTMLInputElement>document.getElementById('estado')).value
+    let seguimientoInput:string = (<HTMLInputElement>document.getElementById('seguimiento')).value
+
     this.estados.forEach(estado => {
-      if (this.casoUsuario.estado == estado.desc_estado) {
+      if (estadoInput == estado.desc_estado) {
         estadoCaso = estado.id_estado
       }
     })
@@ -86,7 +89,7 @@ export class CrearCasoComponent implements OnInit {
     this.caso.id_caso = this.casoUsuario.id_caso;
     this.caso.fecha_caso = hoy.getDate().toString() + '/' + month + '/' + año;
     this.caso.estado = estadoCaso.toString();
-    this.caso.seguimiento = this.casoUsuario.seguimiento;
+    this.caso.seguimiento = seguimientoInput
     this.caso.detalle_caso = this.casoUsuario.detalle_caso;
     this.caso.usuario_id_usuario = id_abogado.toString();
 

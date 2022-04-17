@@ -31,7 +31,8 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="comment">Estado:</label>
-                    <select [(ngModel)]="casoUsuario.estado" class="form-select" name="estado" id="estado">
+                    <select class="form-select" name="estado" id="estado">
+                        <option selected>Seleccione estado</option>
                         <option 
                         *ngFor="let item of estados"
                             >{{item.desc_estado}}
@@ -43,7 +44,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="comment">Seguimiento:</label>
-                    <select [(ngModel)]="casoUsuario.seguimiento" class="form-select" name="seguimiento" id="seguimiento">
+                    <select class="form-select" name="seguimiento" id="seguimiento">
                         <option selected >Seleccione seguimiento</option>
                         <option *ngFor="let item of seguimientos"> {{item}}
                         </option>

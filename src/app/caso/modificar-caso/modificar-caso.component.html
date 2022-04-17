@@ -4,66 +4,64 @@
 
 
 <div class="container degradado mb-5 mt-5 p-4">
-    <button class="btn btn-success float-right"> Guardar modificaciones <i class="fa-solid fa-plus"></i></button>
-    <h1>Datos del caso</h1>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="comment">Id del caso:</label>
-                <input [(ngModel)]="caso.id_caso" type="text" class="form-control" id="idcaso" placeholder="Ingrese id"
-                    name="idcaso" disabled>
+
+    <form #casoForm="ngForm" (ngSubmit)="modificarCaso()"  method="post">
+        <button type="submit" class="btn btn-success float-right"> Modificar Caso <i
+                class="fa-solid fa-plus"></i></button>
+        <br>
+        <h1>Datos del caso</h1>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="comment">Id del caso:</label>
+                    <input [(ngModel)]="caso.id_caso" type="text" class="form-control" 
+                    id="id_caso" placeholder="Ingrese id" name="id_caso">
+                </div>
+                <br>
             </div>
-            <br>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="comment">Fecha creación:</label>
-                <input type="text" class="form-control" [value]="caso.fecha_caso" disabled>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="comment">Asignar abogado:</label>
+                    <select [(ngModel)]="caso.nombre_usuario" class="form-select" name="abogado" id="abogado">
+                        <option [selected]="caso.nombre_usuario == item.nombre_usuario"  *ngFor="let item of abogados"> {{item.nombre_usuario}}
+                        </option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="comment">Asignar abogado:</label>
-                <select class="form-select" name="" id="">
-                    <option selected value="">{{caso.nombre_usuario}}</option>
-                    <option value="">El peor</option>
-                </select>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="comment">Estado:</label>
+                    <select class="form-select" name="estado" id="estado">
+                        <option [selected]="caso.estado == item.id_estado.toString()" 
+                        *ngFor="let item of estados"
+                            >{{item.desc_estado}}
+                        </option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="comment">Estado:</label>
-                <select class="form-select" name="" id="">
-                    <option 
-                    [selected]="caso.estado == item.id_estado.toString()"
-                    *ngFor="let item of estados"  
-                    >{{item.desc_estado}}</option>
-                    
-                </select>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="comment">Seguimiento:</label>
+                    <select  class="form-select" name="seguimiento" id="seguimiento">
+                        <option 
+                        [selected]="caso.seguimiento == item"
+                        *ngFor="let item of seguimientos"> {{item}}
+                        </option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="comment">Seguimiento:</label>
-                <select class="form-select" name="" id="">
-                    <option 
-                    [selected]="item == caso.seguimiento"
-                    *ngFor="let item of seguimientos" >{{item}}</option>
-                    
-                </select>
+            <div class="col-sm-6">
+                <label for="comment" style="color: black;">Detalle del caso:</label>
+                <textarea [(ngModel)]="caso.detalle_caso" class="form-control" rows="5" id="detalle" name="detalle"></textarea>
             </div>
-        </div>
 
-        <div class="col-sm-6">
-            <label for="comment" style="color: black;">Detalle del caso:</label>
-            <textarea class="form-control" rows="5" id="comment" name="text" [value]="caso.detalle_caso"></textarea>
-        </div>
-    </div>
 
+        </div>
+    </form>
 
     <!-- Lista demandas -->
 
@@ -71,14 +69,14 @@
         <h3>Listado de demandas</h3>
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div *ngFor="let demanda of demandas; index as i" class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <h2 class="accordion-header" [id]="'panelsStayOpen-headingOne'+i">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        [attr.data-bs-target]="'#panelsStayOpen-collapseOne'+i" aria-expanded="true"
                         aria-controls="panelsStayOpen-collapseOne">
                         Número de demanda: #{{demanda.id_demanda}}
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                <div [id]="'panelsStayOpen-collapseOne'+i" class="accordion-collapse collapse"
                     aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
                         <div class="row datos-demanda p-2">
@@ -147,9 +145,9 @@
                                                 <div class="col-sm-4">
                                                     <div class="form-group date">
                                                         <label for="comment">Fecha de ingreso:</label>
-                                                        <input class="form-control" type="datetime-local"
-                                                            id="meeting-time" name="meeting-time" min="2021-01-31T00:00"
-                                                            max="2022-12-31T00:00" [value]="demanda.fecha_demanda" disabled>
+                                                        <input class="form-control" type="text" id="meeting-time"
+                                                            name="meeting-time" [value]="demanda.fecha_demanda"
+                                                            disabled>
                                                     </div>
                                                 </div>
 
@@ -158,11 +156,11 @@
                                                         <label for="sel1" class="form-label">Tipo Demanda:</label>
                                                         <select class="form-select" id="sel1" name="sellist">
                                                             <option
-                                                            [selected]="item.desc_tp_demanda == demanda.desc_tp_demanda"
-                                                            *ngFor="let item of tpDemandas"   >
-                                                            {{item.desc_tp_demanda}}
+                                                                [selected]="item.desc_tp_demanda == demanda.desc_tp_demanda"
+                                                                *ngFor="let item of tpDemandas">
+                                                                {{item.desc_tp_demanda}}
                                                             </option>
-                                                            
+
                                                         </select>
 
                                                     </div>

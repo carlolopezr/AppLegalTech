@@ -81,3 +81,11 @@ export interface casoAgregar {
     detalle_caso:string,
     usuario_id_usuario:string,
 }
+
+export interface casoModificar{  
+    estado:string,
+    seguimiento:string,
+    detalle_caso:string,
+    usuario_id_usuario:string,
+    id_caso:string,    
+}
