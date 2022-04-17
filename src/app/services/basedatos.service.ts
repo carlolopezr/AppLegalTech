@@ -2,7 +2,7 @@ import { demanda } from './../interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { caso } from 'src/app/interfaces';
-import { comuna, tpDemanda, usuario, casoAgregar, demandaAgregar, casoModificar } from '../interfaces';
+import { comuna, tpDemanda, usuario, casoAgregar, demandaAgregar, casoModificar, demandaModificar } from '../interfaces';
 
 
 @Injectable({
@@ -52,6 +52,10 @@ export class BasedatosService {
 
   putCaso(caso:casoModificar){
     return this.http.put(this.url +`modulo/caso/update.php?id_caso=${caso.id_caso}`, JSON.stringify(caso))
+  }
+
+  putDemanda(demanda:demandaModificar){
+    return this.http.put(this.url +`modulo/demanda/update.php?id_demanda=${demanda.id_demanda}`, JSON.stringify(demanda))
   }
 
 }

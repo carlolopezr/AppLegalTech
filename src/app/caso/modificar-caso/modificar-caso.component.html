@@ -154,7 +154,7 @@
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="sel1" class="form-label">Tipo Demanda:</label>
-                                                        <select class="form-select" id="sel1" name="sellist">
+                                                        <select class="form-select" id="tp_demanda" name="sellist">
                                                             <option
                                                                 [selected]="item.desc_tp_demanda == demanda.desc_tp_demanda"
                                                                 *ngFor="let item of tpDemandas">
@@ -168,7 +168,7 @@
 
                                                 <div class="col-sm-12">
                                                     <label for="comment">Detalle de la Demanda:</label>
-                                                    <textarea class="form-control mb-4" rows="5" id="comment"
+                                                    <textarea class="form-control mb-4" rows="5" id="detalle_demanda"
                                                         name="text" [value]="demanda.detalle_demanda"></textarea>
                                                 </div>
 
@@ -177,40 +177,40 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="txtRut">Rut:</label>
+                                                            <label for="rut_dmdo">Rut:</label>
                                                             <input type="text" required class="form-control" name="rut"
-                                                                id="txtRut" aria-describedby="helpId" placeholder=""
+                                                                id="rut_dmdo" aria-describedby="helpId" placeholder=""
                                                                 [value]="demanda.rut_demandado">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="txtRut">Nombre:</label>
+                                                            <label for="nom_dmdo">Nombre:</label>
                                                             <input type="text" required class="form-control" name="Id"
-                                                                id="txtId" aria-describedby="helpId"
+                                                                id="nom_dmdo" aria-describedby="helpId"
                                                                 [value]="demanda.nom_demandado">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="txtRut">Apellido:</label>
+                                                            <label for="ape_dmdo">Apellido:</label>
                                                             <input type="text" required class="form-control" name="Id"
-                                                                id="txtId" aria-describedby="helpId"
+                                                                id="ape_dmdo" aria-describedby="helpId"
                                                                 [value]="demanda.ape_demandado">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="txtTelefono">Telefono:</label>
+                                                            <label for="tel_dmdo">Telefono:</label>
                                                             <input type="text" required class="form-control" name="Id"
-                                                                id="txtTelefono" aria-describedby="helpId"
+                                                                id="tel_dmdo" aria-describedby="helpId"
                                                                 [value]="demanda.tel_demandado">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="sel1" class="form-label">Comuna:</label>
-                                                            <select class="form-select" id="sel1" name="sellist">
+                                                            <label for="com_dmdo" class="form-label">Comuna:</label>
+                                                            <select class="form-select" id="com_dmdo" name="sellist">
                                                                 <option
                                                                     [selected]="comuna.nom_comuna == demanda.nom_comuna_dmdo"
                                                                     *ngFor="let comuna of comunas">
@@ -225,40 +225,40 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="txtRut">Rut:</label>
+                                                            <label for="rut_dmte">Rut:</label>
                                                             <input type="text" required class="form-control" name="rut"
-                                                                id="txtRut" aria-describedby="helpId" placeholder=""
+                                                                id="rut_dmte" aria-describedby="helpId" placeholder=""
                                                                 [value]="demanda.rut_dmte">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="txtRut">Nombre:</label>
+                                                            <label for="nom_dmte">Nombre:</label>
                                                             <input type="text" required class="form-control" name="Id"
-                                                                id="txtId" aria-describedby="helpId"
+                                                                id="nom_dmte" aria-describedby="helpId"
                                                                 [value]="demanda.nom_dmte">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="txtRut">Apellido:</label>
+                                                            <label for="ape_dmte">Apellido:</label>
                                                             <input type="text" required class="form-control" name="Id"
-                                                                id="txtId" aria-describedby="helpId"
+                                                                id="ape_dmte" aria-describedby="helpId"
                                                                 [value]="demanda.ape_dmte">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="txtTelefono">Telefono:</label>
+                                                            <label for="tel_dmte">Telefono:</label>
                                                             <input type="text" required class="form-control" name="Id"
-                                                                id="txtTelefono" aria-describedby="helpId"
+                                                                id="tel_dmte" aria-describedby="helpId"
                                                                 [value]="demanda.tel_dmte">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label for="sel1" class="form-label">Comuna:</label>
-                                                            <select class="form-select" id="sel1" name="sellist">
+                                                            <label for="com_dmte" class="form-label">Comuna:</label>
+                                                            <select class="form-select" id="com_dmte" name="sellist">
                                                                 <option
                                                                     [selected]="comuna.nom_comuna == demanda.nom_comuna_dmte"
                                                                     *ngFor="let comuna of comunas">
@@ -269,7 +269,7 @@
                                                     </div>
 
                                                 </div>
-                                                <!-- BOTONES DEMANDA -->
+                                               
                                             </div>
 
                                         </div>
@@ -278,8 +278,8 @@
                                         <div class="flexibles modal-footer">
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Volver
                                                 atras</button>
-                                            <button type="button" class="btn btn-success"
-                                                data-bs-dismiss="modal">Modificar demanda</button>
+                                            <button (click)="modificarDemanda(demanda)" type="button" class="btn btn-success"
+                                                >Modificar demanda</button>
                                         </div>
                                     </div>
                                 </div>

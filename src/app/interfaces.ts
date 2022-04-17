@@ -89,3 +89,20 @@ export interface casoModificar{
     usuario_id_usuario:string,
     id_caso:string,    
 }
+
+export interface demandaModificar{
+    id_demanda:number,
+    detalle_demanda:string,
+    rut_demandado:string,
+    nom_demandado:string,
+    ape_demandado:string,
+    tel_demandado:string,
+    rut_dmte:string,
+    nom_dmte:string,
+    ape_dmte:string,
+    tel_dmte:string,
+    tipo_demanda_id_tp_demanda:string,
+    caso_id_caso:number,
+    id_comuna_dmdo:string,
+    id_comuna_dmte:string,
+}
