@@ -5,7 +5,7 @@
 
 <div class="container degradado mb-5 mt-5 p-4">
 
-    <form #casoForm="ngForm" (ngSubmit)="modificarCaso()"  method="post">
+    <form #casoForm="ngForm" (ngSubmit)="modificarCaso()" method="post">
         <button type="submit" class="btn btn-success float-right"> Modificar Caso <i
                 class="fa-solid fa-plus"></i></button>
         <br>
@@ -15,8 +15,8 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="comment">Id del caso:</label>
-                    <input [(ngModel)]="caso.id_caso" type="text" class="form-control" 
-                    id="id_caso" placeholder="Ingrese id" name="id_caso">
+                    <input [(ngModel)]="caso.id_caso" type="text" class="form-control" id="id_caso"
+                        placeholder="Ingrese id" name="id_caso">
                 </div>
                 <br>
             </div>
@@ -24,7 +24,8 @@
                 <div class="form-group">
                     <label for="comment">Asignar abogado:</label>
                     <select [(ngModel)]="caso.nombre_usuario" class="form-select" name="abogado" id="abogado">
-                        <option [selected]="caso.nombre_usuario == item.nombre_usuario"  *ngFor="let item of abogados"> {{item.nombre_usuario}}
+                        <option [selected]="caso.nombre_usuario == item.nombre_usuario" *ngFor="let item of abogados">
+                            {{item.nombre_usuario}}
                         </option>
                     </select>
                 </div>
@@ -34,9 +35,8 @@
                 <div class="form-group">
                     <label for="comment">Estado:</label>
                     <select class="form-select" name="estado" id="estado">
-                        <option [selected]="caso.estado == item.id_estado.toString()" 
-                        *ngFor="let item of estados"
-                            >{{item.desc_estado}}
+                        <option [selected]="caso.estado == item.id_estado.toString()" *ngFor="let item of estados">
+                            {{item.desc_estado}}
                         </option>
                     </select>
                 </div>
@@ -45,10 +45,8 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="comment">Seguimiento:</label>
-                    <select  class="form-select" name="seguimiento" id="seguimiento">
-                        <option 
-                        [selected]="caso.seguimiento == item"
-                        *ngFor="let item of seguimientos"> {{item}}
+                    <select class="form-select" name="seguimiento" id="seguimiento">
+                        <option [selected]="caso.seguimiento == item" *ngFor="let item of seguimientos"> {{item}}
                         </option>
                     </select>
                 </div>
@@ -56,7 +54,8 @@
 
             <div class="col-sm-6">
                 <label for="comment" style="color: black;">Detalle del caso:</label>
-                <textarea [(ngModel)]="caso.detalle_caso" class="form-control" rows="5" id="detalle" name="detalle"></textarea>
+                <textarea [(ngModel)]="caso.detalle_caso" class="form-control" rows="5" id="detalle"
+                    name="detalle"></textarea>
             </div>
 
 
@@ -117,7 +116,42 @@
 
                             <div class="btn-modificar">
                                 <button data-bs-toggle="modal" [attr.data-bs-target]="'#mymodal'+i"
-                                    class="btn btn-primary"> Modificar demanda</button>
+                                    class="btn btn-primary mr-2"> Modificar demanda</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    [attr.data-bs-target]="'#delModal'+i">
+                                    Eliminar demanda</button>
+                            </div>
+
+                            <!-- MODAL PARA ELIMINAR  -->
+
+                            <div class="modal" [id]="'delModal'+i">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Eliminar demanda</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            ¿Esta seguro que desea eliminar la demanda #{{demanda.id_demanda}}?
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer flexibles">
+                                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Volver
+                                                
+                                            </button>
+                                            <button (click)="eliminarDemanda(demanda.id_demanda.toString())"
+                                                type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar
+                                                </button>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- MODAL -->
@@ -269,7 +303,7 @@
                                                     </div>
 
                                                 </div>
-                                               
+
                                             </div>
 
                                         </div>
@@ -278,8 +312,8 @@
                                         <div class="flexibles modal-footer">
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Volver
                                                 atras</button>
-                                            <button (click)="modificarDemanda(demanda)" type="button" class="btn btn-success"
-                                                >Modificar demanda</button>
+                                            <button (click)="modificarDemanda(demanda)" type="button"
+                                                class="btn btn-success">Modificar demanda</button>
                                         </div>
                                     </div>
                                 </div>

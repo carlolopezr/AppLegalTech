@@ -58,4 +58,9 @@ export class BasedatosService {
     return this.http.put(this.url +`modulo/demanda/update.php?id_demanda=${demanda.id_demanda}`, JSON.stringify(demanda))
   }
 
+  deleteDemanda(codigo:string){
+    return this.http.delete(this.url+`modulo/demanda/eliminar.php?id_demanda=${codigo}`)
+  }
+
+  
 }
