@@ -53,7 +53,7 @@
             <div class="enlinea">
               <a href="" data-bs-toggle="modal" [attr.data-bs-target]="'#mymodal'+i"><i
                   class="m-1 pr-2 fa-solid fa-eye"> </i></a>
-              <a [routerLink]="'/modificar-caso/'+item.id_caso"><i class="m-1 pr-2 fa-solid fa-pencil yellow"></i></a>
+              <a [routerLink]="'/modificar-caso/'+item.id_caso"><i class="m-1 pr-2 fa-solid fa-gear"></i></a>
               <div class="form-check form-switch">
                 <input (click)="cambiarEstado(item.id_caso)" class="form-check-input" type="checkbox"
                   [id]="'mySwitch'+i" name="darkmode" value="yes" [checked]="item.estado=='1'">

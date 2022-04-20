@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { caso } from 'src/app/interfaces';
 import { BasedatosService } from '../../services/basedatos.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { demanda, tpDemanda, comuna, usuario, estado, casoModificar, demandaModi
   templateUrl: './modificar-caso.component.html',
   styleUrls: ['./modificar-caso.component.css']
 })
-export class ModificarCasoComponent implements OnInit {
+export class ModificarCasoComponent implements OnInit{
 
   seguimientos = ['Ingresando Demanda', 'Contestación', 'Decisión','Apelación','Ejecución', 'En camino'];
   estados:estado[]=[
@@ -156,6 +156,7 @@ export class ModificarCasoComponent implements OnInit {
     if (this.validarCaso(this.casoModificar)) {
       this.db.putCaso(this.casoModificar).subscribe(datos => {     
       });
+      
     }
     else{
       alert('Por favor complemente todos los campos')
@@ -235,11 +236,20 @@ export class ModificarCasoComponent implements OnInit {
     if (this.validarDemanda(this.updateDemanda)) {
       this.db.putDemanda(this.updateDemanda).subscribe(datos => {
         console.log(datos);   
-      })  
+      }) 
+      
     }
     else{
       alert('Complete todos los campos')
     }
+  }
+
+
+  eliminarDemanda(codigo:string){
+    this.db.deleteDemanda(codigo).subscribe(datos=>{
+      console.log(datos);} 
+    )
+  
   }
 
   validarDemanda(demanda:demandaModificar) :boolean{
@@ -255,6 +265,8 @@ export class ModificarCasoComponent implements OnInit {
     }
     return valido 
   }
+
+
 
 }
 
