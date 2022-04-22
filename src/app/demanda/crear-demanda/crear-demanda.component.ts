@@ -121,7 +121,6 @@ export class CrearDemandaComponent implements OnInit {
     this.demandaAgregar.caso_id_caso = this.demanda.caso_id_caso.toString();
     this.demandaAgregar.id_comuna_dmdo = id_comuna_dmdo;
     this.demandaAgregar.id_comuna_dmte = id_comuna_dmte;
-    this.demandaAgregar.caso_id_caso = '123';
 
     console.log(this.demandaAgregar);
     
