@@ -124,10 +124,10 @@ export class CrearCasoComponent implements OnInit {
     else if(caso.detalle_caso==''){
       valido=false
     }
-    else if(caso.seguimiento==''){
+    else if(caso.seguimiento=='' || caso.seguimiento== 'Seleccione seguimiento'){
       valido=false
     }
-    else if(caso.estado == ''){
+    else if(caso.estado == '' || caso.estado == 'Seleccione estado'){
       valido=false
     }
     return valido  
