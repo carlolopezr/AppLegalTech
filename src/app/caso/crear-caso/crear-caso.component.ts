@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { estado, usuario,tpDemanda, caso, casoAgregar  } from 'src/app/interfaces';
+import Swal from 'sweetalert2';
 import { BasedatosService } from '../../services/basedatos.service';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -43,7 +45,7 @@ export class CrearCasoComponent implements OnInit {
     usuario_id_usuario:'',
   }
 
-  constructor(private db: BasedatosService) { }
+  constructor(private db: BasedatosService, private router:Router) { }
 
   ngOnInit(): void {
     this.obtAbogados();
@@ -98,6 +100,14 @@ export class CrearCasoComponent implements OnInit {
     if (this.validarCaso(this.caso)) {   
       this.db.agregarCaso(this.caso).subscribe(datos => {    
       });
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Caso creado!',
+        text: 'Caso creado con exito!',
+      }).then(result =>{
+        this.router.navigate(['caso'])
+      })
     }  
     else{
       alert('Por favor complete los campos')

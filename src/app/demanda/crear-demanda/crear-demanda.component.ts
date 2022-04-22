@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { comuna, tpDemanda,caso } from 'src/app/interfaces';
 import { BasedatosService } from '../../services/basedatos.service';
 import { demanda, demandaAgregar } from '../../interfaces';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-demanda',
@@ -51,7 +53,7 @@ export class CrearDemandaComponent implements OnInit {
   }
   
 
-  constructor(private db: BasedatosService) { }
+  constructor(private db: BasedatosService, private router:Router) { }
 
   ngOnInit(): void {
     this.obtComunas();
@@ -126,6 +128,13 @@ export class CrearDemandaComponent implements OnInit {
     if (this.validarDemanda(this.demandaAgregar)) {
       this.db.postDemanda(this.demandaAgregar).subscribe(datos => {
       });  
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Demanda creada con èxito!!',
+      }).then(result=>{
+        this.router.navigate(['demanda'])
+      })
     }
 
     else{

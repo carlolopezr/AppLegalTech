@@ -1,8 +1,9 @@
 import { Component, OnInit, } from '@angular/core';
 import { caso } from 'src/app/interfaces';
 import { BasedatosService } from '../../services/basedatos.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { demanda, tpDemanda, comuna, usuario, estado, casoModificar, demandaModificar } from '../../interfaces';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modificar-caso',
@@ -72,7 +73,7 @@ export class ModificarCasoComponent implements OnInit{
 
 
 
-  constructor(private db: BasedatosService, private activatedRoute: ActivatedRoute) { }
+  constructor(private db: BasedatosService, private activatedRoute: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -156,6 +157,14 @@ export class ModificarCasoComponent implements OnInit{
     if (this.validarCaso(this.casoModificar)) {
       this.db.putCaso(this.casoModificar).subscribe(datos => {     
       });
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Caso Modificado',
+        text: 'Caso Modificado con éxito!',
+      }).then(result=>{
+        this.router.navigate(['caso'])
+      })
       
     }
     else{
@@ -238,6 +247,14 @@ export class ModificarCasoComponent implements OnInit{
         console.log(datos);   
       }) 
       
+      Swal.fire({
+        icon: 'success',
+        title: 'Demanda Modificada',
+        text: 'Demanda Modificada con éxito!',
+      }).then(result=>{
+        window.location.reload();
+      })
+      
     }
     else{
       alert('Complete todos los campos')
@@ -249,6 +266,12 @@ export class ModificarCasoComponent implements OnInit{
     this.db.deleteDemanda(codigo).subscribe(datos=>{
       console.log(datos);} 
     )
+    Swal.fire({
+      icon: 'success',
+      title: 'Demanda eliminada con èxito!!',
+    }).then(result=>{
+      window.location.reload();
+    })
   
   }
 
