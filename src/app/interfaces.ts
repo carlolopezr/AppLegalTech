@@ -106,3 +106,8 @@ export interface demandaModificar{
     id_comuna_dmdo:string,
     id_comuna_dmte:string,
 }
+
+export interface login {
+    rut_usuario:string,
+    password:string,
+}

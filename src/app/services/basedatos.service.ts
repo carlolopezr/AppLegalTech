@@ -1,8 +1,9 @@
 import { demanda } from './../interfaces';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { caso } from 'src/app/interfaces';
-import { comuna, tpDemanda, usuario, casoAgregar, demandaAgregar, casoModificar, demandaModificar } from '../interfaces';
+import { comuna, tpDemanda, usuario, casoAgregar, demandaAgregar, casoModificar, demandaModificar, login } from '../interfaces';
+import { map } from 'rxjs';
 
 
 @Injectable({
@@ -11,6 +12,7 @@ import { comuna, tpDemanda, usuario, casoAgregar, demandaAgregar, casoModificar,
 export class BasedatosService {
 
   url = 'http://localhost/'
+  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -62,5 +64,31 @@ export class BasedatosService {
     return this.http.delete(this.url+`modulo/demanda/eliminar.php?id_demanda=${codigo}`)
   }
 
+  userlogin(rut_usuario:string, password:string) {
+    //alert(username) //aparece el usuario de la persona que metio los datos
+    return this.http.post<login[]>(this.url + 'modulo/usuario/login.php', { rut_usuario, password })
+    .pipe(map(users => {
+    this.setToken(users[0].rut_usuario);
+    this.getLoggedInName.emit(true);
+    return users;
+    }));
+    }
   
+    setToken(token: string) {
+      localStorage.setItem('token', token);
+      }
+      getToken() {
+      return localStorage.getItem('token');
+      }
+      deleteToken() {
+      localStorage.removeItem('token');
+      }
+      isLoggedIn() {
+      const usertoken = this.getToken();
+      if (usertoken != null) {
+      return true
+      }
+      return false;
+      }
 }
+
