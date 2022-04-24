@@ -12,6 +12,8 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class CrearCasoComponent implements OnInit {
 
+  casos:caso[]=[]
+
   seguimientos = ['Ingresando Demanda', 'Contestación', 'Decisión','Apelación','Ejecución', 'En camino'];
   estados:estado[]=[
     {
@@ -50,6 +52,7 @@ export class CrearCasoComponent implements OnInit {
   ngOnInit(): void {
     this.obtAbogados();
     this.obtTpDemandas();
+    this.obtCasos();
   }
 
   obtAbogados(){
@@ -61,6 +64,12 @@ export class CrearCasoComponent implements OnInit {
   obtTpDemandas(){
     this.db.getTipoDemandas().subscribe(tpDemandas =>{
       this.tipoDemandas = tpDemandas;
+    })
+  }
+
+  obtCasos(){
+    this.db.getCasos().subscribe(casos =>{
+      this.casos = casos
     })
   }
 
@@ -95,8 +104,7 @@ export class CrearCasoComponent implements OnInit {
     this.caso.detalle_caso = this.casoUsuario.detalle_caso;
     this.caso.usuario_id_usuario = id_abogado.toString();
 
-    
-
+  
     if (this.validarCaso(this.caso)) {   
       this.db.agregarCaso(this.caso).subscribe(datos => {    
       });
@@ -108,15 +116,21 @@ export class CrearCasoComponent implements OnInit {
       }).then(result =>{
         this.router.navigate(['caso'])
       })
-    }  
+    } 
     else{
-      alert('Por favor complete los campos')
+      alert('Por favor complete todos los campos')
     }
   }
 
   validarCaso(caso:casoAgregar):boolean{
 
     let valido:boolean=true;
+
+    this.casos.forEach(element => {
+      if (element.id_caso == caso.id_caso) {
+        valido = false
+      }
+    });
 
     if (caso.id_caso == '') {
       valido=false
@@ -130,7 +144,7 @@ export class CrearCasoComponent implements OnInit {
     else if(caso.estado == '' || caso.estado == 'Seleccione estado'){
       valido=false
     }
-    return valido  
+    return valido
   }
 
 

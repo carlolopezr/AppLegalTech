@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CrearCasoComponent } from './crear-caso/crear-caso.component';
 import { RouterModule} from '@angular/router';
 import { ModificarCasoComponent } from './modificar-caso/modificar-caso.component';
+import { CasoRoutingModule } from './caso-routing.module';
 
 
 
@@ -24,7 +25,8 @@ import { ModificarCasoComponent } from './modificar-caso/modificar-caso.componen
     CommonModule,
     FormsModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    CasoRoutingModule
   ]
 })
 export class CasoModule { }
