@@ -1,9 +1,10 @@
 import { demanda } from './../interfaces';
-import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+import { Injectable} from '@angular/core';
 import { caso } from 'src/app/interfaces';
-import { comuna, tpDemanda, usuario, casoAgregar, demandaAgregar, casoModificar, demandaModificar, login } from '../interfaces';
-import { map } from 'rxjs';
+import { comuna, tpDemanda, usuario, casoAgregar, demandaAgregar, casoModificar, demandaModificar } from '../interfaces';
+import { tap, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 
 @Injectable({
@@ -12,7 +13,13 @@ import { map } from 'rxjs';
 export class BasedatosService {
 
   url = 'http://localhost/'
-  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
+
+  private _auth: usuario | undefined;
+
+  get auth() :usuario{
+    return {...this._auth!}
+  }
+  
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +39,7 @@ export class BasedatosService {
     return this.http.get<tpDemanda[]>(this.url + 'modulo/demanda/tipo.php/')
   }
 
-  getUsuario(codigo:number){
+  getUsuario(codigo:string | undefined){
     return this.http.get<usuario>(`${this.url}modulo/usuario/usuario.php?codigo=${codigo}` )  
   }
 
@@ -64,31 +71,37 @@ export class BasedatosService {
     return this.http.delete(this.url+`modulo/demanda/eliminar.php?id_demanda=${codigo}`)
   }
 
-  userlogin(rut_usuario:string, password:string) {
-    //alert(username) //aparece el usuario de la persona que metio los datos
-    return this.http.post<login[]>(this.url + 'modulo/usuario/login.php', { rut_usuario, password })
-    .pipe(map(users => {
-    this.setToken(users[0].rut_usuario);
-    this.getLoggedInName.emit(true);
-    return users;
-    }));
+  login(rut_usuario:string, password:string){ 
+    return this.http.get<usuario>(`${this.url}modulo/usuario/login.php?rut_usuario=${rut_usuario}&password=${password}`)
+    .pipe( 
+      tap( resp => {
+        this._auth = resp
+        console.log(this._auth);
+        localStorage.setItem('token', resp.id_usuario.toString())   
+      } )   
+    )
+  }
+
+  logout(){
+    localStorage.removeItem('token')
+    this._auth = undefined;
+  }
+
+  verificarAuth():Observable<boolean>{
+    if (!localStorage.getItem('token')) {
+      return of(false);
     }
-  
-    setToken(token: string) {
-      localStorage.setItem('token', token);
-      }
-      getToken() {
-      return localStorage.getItem('token');
-      }
-      deleteToken() {
-      localStorage.removeItem('token');
-      }
-      isLoggedIn() {
-      const usertoken = this.getToken();
-      if (usertoken != null) {
-      return true
-      }
-      return false;
-      }
+
+    let id_usuario = (localStorage.getItem('token')?.toString())
+    
+
+    return this.getUsuario(id_usuario)
+      .pipe(
+        map( auth => {
+          this._auth = auth
+          return true
+        })
+      )
+  }
 }
 

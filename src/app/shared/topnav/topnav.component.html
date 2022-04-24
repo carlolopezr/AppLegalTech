@@ -3,8 +3,16 @@
     <!-- Links -->
     <ul class="navbar-nav">
       <li class="nav-item ">
-        <a class="nav-link" routerLink="/caso"> <img class="logo" src="https://legaltech.be/wp-content/uploads/2017/03/logo-200.png" alt=""></a>
+        <a class="nav-link" routerLink="/caso"> <img class="logo"
+            src="https://legaltech.be/wp-content/uploads/2017/03/logo-200.png" alt=""></a>
       </li>
     </ul>
+    <span class="pr-2">
+      <ul class="enlinea">
+        <li class="mr-4 mt-3" >Bienvenido <b>{{auth.nombre_usuario}}</b></li>
+        <li (click)="logout()" class="mr-4 logout-icon" ><i class="fa-solid fa-right-from-bracket"></i></li>
+      </ul>
+    </span>
+
   </div>
 </nav>

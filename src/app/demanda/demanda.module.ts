@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ListaDemandasComponent } from './lista-demandas/lista-demandas.component';
+import { DemandaRoutingModule } from './demanda-routing.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ListaDemandasComponent } from './lista-demandas/lista-demandas.componen
     FormsModule,
     RouterModule,
     SharedModule,
+    DemandaRoutingModule
   ]
 })
 export class DemandaModule { }

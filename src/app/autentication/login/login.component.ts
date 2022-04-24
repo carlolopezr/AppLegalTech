@@ -15,15 +15,34 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  iniciarSesion(){
+  // iniciarSesion(){
 
+  //   let rut_usuario:string = (<HTMLInputElement>document.getElementById('rut_usuario')).value
+  //   let password:string = (<HTMLInputElement>document.getElementById('password')).value
+  //   this.db.userlogin(rut_usuario, password).pipe(first()).subscribe(datos => {
+  //     this.router.navigate(['caso'])
+  //   }, error => {
+  //     alert('Usuario incorrecto')
+  //   })
+  // }
+
+
+  iniciarSesion(){
     let rut_usuario:string = (<HTMLInputElement>document.getElementById('rut_usuario')).value
     let password:string = (<HTMLInputElement>document.getElementById('password')).value
-    this.db.userlogin(rut_usuario, password).pipe(first()).subscribe(datos => {
-      this.router.navigate(['caso'])
+
+    this.db.login(rut_usuario, password).subscribe(datos => {
+
+      if (datos.id_usuario) {
+        this.router.navigate(['caso'])
+      }
+        
     }, error => {
       alert('Usuario incorrecto')
-    })
+    }
+    );
+
+
   }
 
 }
